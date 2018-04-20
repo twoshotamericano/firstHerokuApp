@@ -21,7 +21,7 @@ $(function() {
                     method: 'POST', //optional. GET (default), POST, PUT, DELETE, etc.
                     context: document.body, //optional. Scopes the response to a part of your page
                     data: newCar, // <-- body of the request goes here
-                    url: 'http://localhost:3000/cars/'
+                    url: 'cars/'
                     }).done(function(response){
 
                         data.push(newCar);
@@ -47,7 +47,7 @@ $(function() {
             updateCar._id=data[$(event.target).closest('tr').index()]._id;
             updateCar.make=$(event.target).closest('form').find('.input1').val();
             updateCar.bhp=$(event.target).closest('form').find('.input2').val();
-            urlString='http://localhost:3000/cars/'+updateCar._id
+            urlString='cars/'+updateCar._id
 
             $.ajax({
                     method: 'PUT', //optional. GET (default), POST, PUT, DELETE, etc.
@@ -76,7 +76,7 @@ $(function() {
          {
             var r=$(event.target).closest('tr').index();
             var id=data[r]._id;
-            urlString='http://localhost:3000/cars/'+id;
+            urlString='cars/'+id;
             var row=$(event.target).parent().parent();
 
             $.ajax({
@@ -114,7 +114,7 @@ $(function() {
                 method: 'GET', //optional. GET (default), POST, PUT, DELETE, etc.
                 context: document.body, //optional. Scopes the response to a part of your page
                 data: {}, // <-- body of the request goes here
-                url: 'http://localhost:3000/cars/'
+                url: 'cars/'
             }).done(function(response){
                 data=[];
                 response.forEach(function(element,index){
