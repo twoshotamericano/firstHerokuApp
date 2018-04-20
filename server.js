@@ -28,14 +28,14 @@ function returnCar(id,cars){
 
 
 //connect database
-// mongoose.Promise = global.Promise;
-// var promise = mongoose.connect('mongodb://localhost/first_servers');
-//
-// promise.then(function(db) {
-//  console.log('DATABASE CONNECTED!!');
-// }).catch(function(err){
-//  console.log('CONNECTION ERROR', err);
-// });
+mongoose.Promise = global.Promise;
+var promise = mongoose.connect('mongodb://twoshotamericano:Munichcity3!@ds249079.mlab.com:49079/cars');
+
+promise.then(function(db) {
+ console.log('DATABASE CONNECTED!!');
+}).catch(function(err){
+ console.log('CONNECTION ERROR', err);
+});
 
 // var blogSchema = new Schema({
 //   title:  String,
@@ -49,21 +49,21 @@ function returnCar(id,cars){
 //     favs:  Number
 //   }
 // });
-
-// var Blog = mongoose.model('Blog', blogSchema);
-
-
-//Schema
-// var Schema = mongoose.Schema;
 //
-// var carSchema = new Schema({
-//   make:  String,
-//   bhp: Number
-// });
-//
-// var Car = mongoose.model('Car', carSchema);
-//
-// //Model
+// // var Blog = mongoose.model('Blog', blogSchema);
+
+
+Schema
+var Schema = mongoose.Schema;
+
+var carSchema = new Schema({
+  make:  String,
+  bhp: Number
+});
+
+var Car = mongoose.model('Car', carSchema);
+
+//Model
 
 
 // var cars = [{
@@ -80,18 +80,12 @@ app.get('/cars/:id?', function(req, res){
   var queryObj={};
   if (req.params.id){
     queryObj._id=req.params.id;
-    queryObj.car=returnCar(req.params.id,cars);
   }
-
-
   console.log(queryObj._id);
-
-  res.status(200).json(cars)
-
-  // Car.find(queryObj).exec(function(err,cars){
-  //   if (err) return res.status(500).send(err);
-  //   res.status(200).json(cars);
-  // });
+  Car.find(queryObj).exec(function(err,cars){
+    if (err) return res.status(500).send(err);
+    res.status(200).json(cars);
+  });
 
 
   //res.status(200).json(cars);
@@ -100,51 +94,37 @@ app.get('/cars/:id?', function(req, res){
 app.post('/cars', function(req, res){
   console.log(req.body);
 
-  cars.push(req.body);
-
-  console.log(cars);
-  // var newCar=new Car(carData);
-  // newCar.save(function(err,car){
-  //     if (err) return res.status(500).send(err);
-  //     res.sendStatus(201);
-  // })
+  var carData=req.body;
+  var newCar=new Car(carData);
+  newCar.save(function(err,car){
+      if (err) return res.status(500).send(err);
+      res.sendStatus(201);
+  })
 
 });
 
 
 app.put('/cars/:id', function(req, res){
 
-  //var i=cars.findIndex(returnCar(req.params.id,cars));
-  //console.log(returnCar(req.params.id,cars));
-  cars[req.params.id]=req.body;
-  return res.sendStatus(200);
-
-  // var updateCarId = req.params.id;
-  // //
-  //     Car.update({ _id: updateCarId }, req.body, function (err, raw) {
-  //        if (err) return handleError(err);
-  //        console.log('The raw response from Mongo was ', raw);
-  //        return res.sendStatus(200);
-  //     });
+  var updateCarId = req.params.id;
+  //
+      Car.update({ _id: updateCarId }, req.body, function (err, raw) {
+         if (err) return handleError(err);
+         console.log('The raw response from Mongo was ', raw);
+         return res.sendStatus(200);
+      });
 
 });
 
 app.delete('/cars/:id', function(req, res){
-  // console.log(req.params.id);
-  // console.log(cars);
-  // console.log(returnCar(req.params.id,cars));
-  // var i=cars.findIndex(returnCar(req.params.id,cars));
-  cars.splice(req.params.id,1);
-  return res.sendStatus(200);
-
-  // console.log(req.params.id);
-  // //var carIdForDeletion = req.params.id;
-  // var deletetableCarId=req.params.id;
-  // Car.remove({ _id: deletetableCarId }, function (err,deletedCar) {
-  //   if (err) return res.status(500).send(err);
-  //   // removed!
-  //   res.status(204).json(deletedCar);
-  // });
+  console.log(req.params.id);
+  //var carIdForDeletion = req.params.id;
+  var deletetableCarId=req.params.id;
+  Car.remove({ _id: deletetableCarId }, function (err,deletedCar) {
+    if (err) return res.status(500).send(err);
+    // removed!
+    res.status(204).json(deletedCar);
+  });
 
 });
 
