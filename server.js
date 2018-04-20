@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose'); // DB control program
 
 var app = express();
+const port=process.env.PORT || 3000;
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -149,6 +150,6 @@ app.delete('/cars/:id', function(req, res){
 
 
 
-app.listen(3000, function(){
+app.listen(port, function(){
   console.log('Server listening');
 });
