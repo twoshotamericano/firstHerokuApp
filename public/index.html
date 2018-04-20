@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+    <title>Car Register</title>
+
+  </head>
+
+  <body>
+    <div class="accordion" id="accordion">
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">
+            <button id="getCars" class="btn btn-outline-primary btn-lg btn-block" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Get the cars in the database!
+            </button>
+          </h5>
+        </div>
+
+      <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+        <div class="card-body">
+            <table id="carDatabase" class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">id</th>
+                  <th scope="col">make</th>
+                  <th scope="col">bhp</th>
+                  <th scope="col" >Action 1</th>
+                  <th scope="col">Action 2</th>
+                </tr>
+              </thead>
+
+
+              <tbody class="delete">
+                <tr>
+                <th scope="row">0</th>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td><button type="button" class="btn delete btn-danger">Delete</button></td>
+                </tr>
+              </tbody>
+          </table>
+
+        </div>
+      </div>
+
+    </div>
+
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-outline-warning btn-lg btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Create a car in the database!
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+      <div class="card-body">
+            <form>
+              <div class="form-group">
+                <label for="exampleCarMake">Give me the make of the car</label>
+                <input type="text" class="form-control" id="exampleCarMake" placeholder="Enter make">
+                <small id="makeHelp" class="form-text text-muted">We'll save the make in the database.</small>
+              </div>
+              <div class="form-group">
+                <label for="exampleBHP">Engine power in BHP</label>
+                <input type="text" class="form-control" id="exampleBHP" placeholder="enginePower">
+              </div>
+              <button type="submit" class="btn btn-primary submit">Submit</button>
+          </form>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script src="main.js" charset="utf-8"></script>
+    <script id="entry-template" type="text/x-handlebars-template">
+        <tr>
+        <th scope="row">{{id}}</th>
+        <td>{{_id}}</td>
+        <td>{{make}}</td>
+        <td>{{bhp}}</td>
+        <td><button id="deleteCar" type="button" class="btn delete btn-danger">Delete</button></td>
+        <td>        <div class="btn-group">
+                  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Update Record
+                  </button>
+                  <div class="dropdown-menu">
+                    <form class="px-4 py-3">
+                      <div class="form-group">
+                        <label for="exampleCarMake">Give me the make of the car</label>
+                        <input type="text" class="form-control input1" placeholder="Enter make">
+                        <small class="form-text text-muted">We'll save the make in the database.</small>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleBHP">Engine power in BHP</label>
+                        <input type="text" class="form-control input2" placeholder="enginePower">
+                      </div>
+                  <div class="dropdown-divider"></div>
+                  <button type="update" class="btn btn-warning">Update</button>
+                    </form>
+
+                  </div>
+                </div></td>
+        </tr>
+    </script>
+  </body>
+</html>
